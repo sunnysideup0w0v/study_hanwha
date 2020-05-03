@@ -79,6 +79,9 @@ $("#gnb .gnbList > li:not(.only)").on("mouseleave",function() {
     $("#header").removeClass("hover");
 })
 
+console.log(gnbLi.includes("on"))
+
+
 let productInfo  = new Swiper( "#innovation  .infoBox",{
     effect:"fade",
     speed:1000,
@@ -129,7 +132,7 @@ mainVisualContent.addEventListener('wheel',function(e){
         if(!mainVisualContent.classList.contains("scroll")){
             mainVisualContent.classList.add("scroll");
             console.log("aaaa");
-            gsap.to(document.querySelector(body),{
+            gsap.to(document.querySelector("body"),{
                 scrollTop:$(window).height(),
                 duration:1
             })
