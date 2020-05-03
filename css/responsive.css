@@ -1,0 +1,259 @@
+.pcOnly {
+  display: block;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+@media all and (max-width: 1220px) {
+  #header #gnb {
+    position: fixed;
+    width: 60%;
+    height: 100%;
+    top: 0;
+    left: 100%;
+    color: #333;
+    background-color: #fff;
+    z-index: 2;
+    text-align: left;
+    padding-top: 100px;
+    -webkit-transition: 0.5s ease-out;
+    transition: 0.5s ease-out;
+  }
+  #header #gnb .gnbList {
+    display: block;
+  }
+  #header #gnb .gnbList > li {
+    float: none;
+  }
+  #header #gnb .gnbList > li:before {
+    display: none;
+  }
+  #header #gnb .gnbList > li .depth01 {
+    border-bottom: 1px solid #d9d9d9;
+  }
+  #header #gnb .gnbList > li .depth02 {
+    background-color: #f8f8f8;
+  }
+  #header #gnb .gnbList > li .depth02 li a {
+    padding-left: 50px;
+  }
+  #header #gnb.on {
+    left: 40%;
+  }
+}
+
+@media all and (max-width: 1220px) {
+  #mainVisual {
+    min-height: 500px;
+    position: relative;
+  }
+  #mainVisual:before {
+    content: '';
+    display: block;
+    padding-top: 56.25%;
+  }
+  #mainVisual .mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+  }
+  #mainVisual .visualList li {
+    height: auto;
+    position: relative;
+    min-height: auto;
+  }
+  #mainVisual .visualList li:before {
+    content: '';
+    display: block;
+    padding-top: 56.25%;
+  }
+  #mainVisual .visualList li .img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    min-height: auto;
+  }
+  #mainVisual .pagination {
+    height: auto;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    top: auto;
+  }
+  #mainVisual .pagination:before {
+    display: none;
+  }
+  #mainVisual .pagination ul {
+    width: 100%;
+    position: static;
+    text-align: center;
+  }
+  #mainVisual .pagination ul li {
+    display: inline-block;
+    margin: 0 30px;
+  }
+  #mainVisual .pagination ul li a {
+    padding: 100px 0 0 0;
+  }
+  #mainVisual .pagination ul li a span {
+    display: none;
+  }
+  #mainVisual .pagination ul li a:before {
+    left: 50%;
+  }
+  #mainVisual .pagination ul li a:after {
+    left: 50%;
+  }
+  #mainVisual .slogan {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    top: 35%;
+  }
+}
+
+@media all and (max-width: 1100px) {
+  #mainContents .request {
+    padding: 100px 0;
+  }
+  #mainContents .request h2 {
+    margin-bottom: 50px;
+  }
+  #mainContents .request .requestBox {
+    width: 100%;
+    padding: 0 15px;
+  }
+  #mainContents .request .requestBox .leftCon {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+  }
+  #mainContents .request .requestBox .rightCon {
+    width: 100%;
+    margin-top: 50px;
+    float: none;
+    margin-left: 0;
+  }
+}
+
+@media all and (max-width: 960px) {
+  .pcOnly {
+    display: none;
+  }
+  .mobileOnly {
+    display: block;
+  }
+  #mainContents .mainBanners {
+    padding: 50px;
+  }
+  #mainContents .mainBanners .mainBanner {
+    float: none;
+    width: 100%;
+  }
+  #mainContents .mainBanners .mainBanner span {
+    display: none;
+  }
+  #mainContents .quickMenu {
+    padding: 50px 50px 50px 50px;
+  }
+  #mainContents .quickMenu li {
+    width: 100%;
+    float: none;
+  }
+  #mainContents .quickMenu li:nth-child(2n+1) .contents:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: #fff;
+    position: absolute;
+    top: -20px;
+    left: 30px;
+  }
+  #mainContents .quickMenu li:nth-child(2n) .contents {
+    position: relative;
+    z-index: 2;
+  }
+  #mainContents .quickMenu li:nth-child(2n) .contents:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #fff;
+    position: absolute;
+    bottom: -20px;
+    left: 30px;
+  }
+  #mainContents .quickMenu li .img {
+    position: relative;
+    overflow: hidden;
+    width: 50%;
+    float: left;
+  }
+  #mainContents .quickMenu li .img:before {
+    content: '';
+    display: block;
+    padding-top: 60%;
+  }
+  #mainContents .quickMenu li .img img {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  #mainContents .quickMenu li .contents {
+    position: relative;
+    background-color: #fff;
+    width: 50%;
+    float: left;
+  }
+  #mainContents .quickMenu li .contents:before {
+    content: '';
+    display: block;
+    padding-top: 60%;
+  }
+  #mainContents .quickMenu li .contents .inner {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 30px;
+  }
+  #mainContents .quickMenu li .contents .inner h2 {
+    font-size: 2.4rem;
+    margin-bottom: 15px;
+  }
+  #mainContents .quickMenu li .contents .inner p {
+    line-height: 1.5;
+    font-size: 1.4rem;
+  }
+}
+
+@media all and (max-width: 480px) {
+  #mainContents .mainBanners {
+    padding: 15px;
+  }
+  #mainContents .mainBanners .mainBanner {
+    height: auto;
+  }
+  #mainContents .mainBanners .mainBanner a {
+    height: auto;
+  }
+  #mainContents .mainBanners .mainBanner a h2 {
+    margin-bottom: 30px;
+  }
+  #mainContents .mainBanners .mainBanner a h3 {
+    font-size: 2.2rem;
+  }
+  #mainContents .mainBanners .mainBanner a p {
+    font-size: 1.2rem;
+  }
+}

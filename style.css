@@ -1,0 +1,112 @@
+body, ul, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+body {
+    background-color: #111;
+    font-family: 'arial';
+    line-height: 1.45;
+    color: #999;
+}
+
+.wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.title {
+    width: max-content;
+    letter-spacing: 0.4em;
+    margin: 30px 0;
+    position: relative;
+    font-size: 30px;
+    transition: all .4s;
+}
+
+.title:hover {
+    color: white;
+}
+
+.title:before {
+    content: ' ';
+    background-color: currentColor;
+    transition: margin .4s;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-right: 0.4em;
+    bottom: -0.2em;
+    height: 0.2em;
+}
+
+.food {
+    display: flex;
+}
+
+.food-item {
+    width: 33.3333333%;
+    overflow: hidden;
+    transition: all .4s;
+    display: flex;
+    /* justify-content: space-around; */
+    position: relative;
+    opacity: 0.4;
+}
+
+.food-item.cookie { color: orangered; }
+.food-item.cake   { color: pink; }
+.food-item.crepe  { color: yellow; }
+
+.food-item-cover {
+    flex-shrink: 0;
+}
+
+.food:hover .food-item {
+    width: 25%;
+}
+
+.food .food-item:hover {
+    width: 50%;
+    opacity: 1;
+}
+
+.food-item-contents {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.95);
+    margin: 20px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.food-item-contents h2 {
+    margin-bottom: 10px;
+}
+
+.food-item-contents p {
+    width: 400px;
+    color: #777;
+}
+
+
+
+
+
+
+
+
+
+
+
+

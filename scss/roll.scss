@@ -1,0 +1,36 @@
+@import "_vars";
+
+.roll {
+    position: fixed;
+    right:370px;
+    bottom:130px;
+    li, .cover {
+        width:320px;
+        height: 80px;
+        line-height: 80px;
+        padding-left: 50px;
+        color:#fff;
+        font-size: 2rem;
+        font-weight: 700;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.05);
+        transform-origin: 15% 50%;
+        position: absolute;
+        left:0;
+        top:0;
+        &:nth-child(9n) {background-color: rgb(81, 124, 46);}
+        &:nth-child(9n+1) {background-color: rgb(238, 49, 49);}
+        &:nth-child(9n+2) {background-color: rgb(182, 59, 59);}
+        &:nth-child(9n+3) {background-color: rgb(42, 218, 51);}
+        &:nth-child(9n+4) {background-color: rgb(29, 182, 202);}
+        &:nth-child(9n+5) {background-color: rgb(202, 54, 228);}
+        &:nth-child(9n+6) {background-color: rgb(223, 174, 14);}
+        &:nth-child(9n+7) {background-color: rgb(30, 61, 199);}
+        &:nth-child(9n+8) {background-color: rgb(233, 43, 43);}
+    }
+    .cover {
+        z-index: 9;
+        background-color: #000 !important;
+        cursor: pointer;
+    }
+}
