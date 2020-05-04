@@ -32,20 +32,12 @@ let mainVisual  = new Swiper( "#mainVisual  .mask",{
             }
         },
         slideChange: function () {
+            // let realIndexArr = [];
             // for(i=0;i<pagination.length;i++){
             //     pagination[i].classList.remove("active");               
             // }
-            // function indexInParent(node) {
-            //     var children = node.parentNode.childNodes;
-            //     var num = 0;
-            //     for (var i=0; i<children.length; i++) {
-            //         if (children[i]==node) return num;
-            //         if (children[i].nodeType==1) num++;
-            //     }
-            //     return -1;
-            // }
-            // let index = indexInParent(document.querySelector("#mainVisual .mask .swiper-slide-active"));
-            // pagination[index+1].classList.add("active")
+            // 
+            // 문제점: eq realIndex??
             $("#mainVisual .pagination li").removeClass("active");
             $("#mainVisual .pagination li").eq(this.realIndex).addClass("active");
         },
@@ -56,31 +48,36 @@ let mainVisual  = new Swiper( "#mainVisual  .mask",{
 //     pagination[i].addEventListener("click",function(){
 //         if(!mainVisual.animating){
 //             this.classList.add('active');
-//             getSiblings(this).classList.remove('active');
-//             mainVisual.slideTo()
 //         }
 //     })
-// } 너도 좀 이따가..
+// }
+// } 너도 좀 이따가.. 문제점: this.index()+1 여기
 $("#mainVisual .pagination li").on("click",function(){
     if(!mainVisual.animating) {
         $(this).addClass("active");
         $(this).siblings("li").removeClass("active");
+        console.log("$this",$(this))
         mainVisual.slideTo($(this).index()+1);
     }
     return false;
 })
 
 let gnbLi =  document.querySelectorAll("#gnb .gnbList > li");
-    // getElementByClassName("only")
-$("#gnb .gnbList > li:not(.only)").on("mouseenter",function() {
-    $("#header").addClass("hover");
-})
-$("#gnb .gnbList > li:not(.only)").on("mouseleave",function() {
-    $("#header").removeClass("hover");
-})
-
-console.log(gnbLi.includes("on"))
-
+let only = document.querySelector("#gnb .gnbList > li.only");
+let notOnly = [];
+for(i=0;i<gnbLi.length;i++){
+    if(!gnbLi[i].classList.contains("only")){
+        notOnly.push(gnbLi[i])
+    }
+}
+for(i=0;i<notOnly.length;i++){
+    notOnly[i].addEventListener("mouseover",function(){
+        document.querySelector("#header").classList.add("hover");
+    });
+    notOnly[i].addEventListener("mouseleave",function(){
+        document.querySelector("#header").classList.remove("hover");
+    })
+}
 
 let productInfo  = new Swiper( "#innovation  .infoBox",{
     effect:"fade",
@@ -126,34 +123,17 @@ window.addEventListener('scroll',function(){
 
 mainVisualContent.addEventListener('wheel',function(e){
     let wheel = e.deltaY;
-    console.log("innerHiehgt",window.innerHeight)
-    console.log(wheel)
     if(wheel>0){
         if(!mainVisualContent.classList.contains("scroll")){
             mainVisualContent.classList.add("scroll");
             console.log("aaaa");
-            gsap.to(document.querySelector("body"),{
-                scrollTop:$(window).height(),
+            gsap.to("html,body",{
+                scrollTop: window.innerHeight,
                 duration:1
             })
         }
     }
 })
-
-// $("#mainVisual").on("mousewheel",function(e) {
-//     console.log("wheeled")
-//     let wheel = e.originalEvent.deltaY;
-//     if(wheel>0) {
-//         if(!$("#mainVisual").hasClass("down")){
-//             $("#mainVisual").addClass("down");
-//                 console.log("aaaa");
-//                 gsap.to($("html,body"),{
-//                 scrollTop:$(window).height(),
-//                 duration:1
-//             })
-//         }
-//     }
-// })
 
 let challengeDt = document.querySelectorAll("#challenge li dt");
 let challengeLi = document.querySelectorAll("#challenge li a")
@@ -172,5 +152,6 @@ for(j=0;j<challengeLi.length;j++){
 for(i=0;i<challengeDt.length;i++){
     challengeDt[i].addEventListener("click",function(e){
         this.closest("li").classList.toggle("on");
+        console.log(this.closest("li"))
     })
 }
