@@ -3,15 +3,20 @@ let mainVisualContent = document.querySelector("#mainVisual");
 let slide = document.querySelectorAll("#mainVisual .mask .visualList li")
 let body = document.body;
 
+
 let getSiblings = function(elem){
     let siblings = [];
-    let sibling = elem.parent.firstChild;
+    let sibling = elem.parentNode.firstChild;
+    // console.log(sibling);
+    console.log(elem.parentNode);
     while(sibling){
-        if(sibling.nodeType === 1 && sibling!==elem){
+        if(sibling.nodeType === 1 && sibling !== elem){
             siblings.push(sibling);
         }
+        console.log("SIBLING>>>>",sibling);
         sibling = sibling.NextSibling;
     }
+    console.log(siblings);
     return siblings;
 }
 let slideArray = Array.from(slide);
@@ -34,37 +39,30 @@ let mainVisual  = new Swiper( "#mainVisual  .mask",{
             }
         },
         slideChange: function () {
-            // let realIndexArr = [];
-            for(i=0;i<pagination.length;i++){
-                pagination[i].classList.remove("active");  
-            }
-            
-            // this > swiper-slide (swiper-slide-active)
-            // slide > NodeList of swiper-slide
-            //  swiper-slide-active class를 가진 li 가 .visualList에서 몇 번째 index인지 구하려고 함.
-            // pagination click 했을 때 넘어가게 하기 위해서.
-            // 문제점: eq realIndex??
-            // console.log(this.realIndex)
-            // $("#mainVisual .pagination li").removeClass("active");
-            // $("#mainVisual .pagination li").eq(this.realIndex).addClass("active");
+            for(j=0;j<slide.length;j++){
+                if(slideArray[j].classList.contains("swiper-slide-active")){
+                    pagination.forEach(v => v.classList.remove("active"));
+                    pagination[j].classList.remove("active");
+                    pagination[j === slide.length - 1 ? 0 : j+1].classList.add("active")
+                };
+            };
         },
     },
 });
+// 문제점 1. 위를 고쳐두고 아래 코드를 실행시키면 pagination이 클릭한거 전 index에 active가 붙음
+//    근데 mainVisual에서는 제대로 됨.. 왜...????? slideTo는 제대로 되는 것 같다.
+// 문제점 2. 위 slideChange에서 보면 loop가 안 됨... 왜.... ㅠ
 
 for(i=0;i<pagination.length;i++){
-    pagination[i].addEventListener("click",e=>{
+    pagination[i].addEventListener("click",function(e){
         if(!mainVisual.animating){
-            let li = e.currentTarget;
-            e.currentTarget.classList.add("active");
-            // get Siblings만 구하면 되는데...li의 siblings가 구해지지 않음.
-            // getSiblings(li) > firstChild is not a function
             pagination = Array.from(pagination);
+            pagination.forEach(v => v.classList.remove("active"));
+            e.currentTarget.classList.add("active");
             mainVisual.slideTo((pagination.indexOf(e.currentTarget))+1)
-        }
-
-    })
-}
-// // } 너도 좀 이따가.. 문제점: this.index()+1 여기;
+        };
+    });
+};
 // $("#mainVisual .pagination li").on("click",function(){
 //     if(!mainVisual.animating) {
 //         $(this).addClass("active");
@@ -127,7 +125,7 @@ let product  = new Swiper( "#innovation  .mask",{
 
 window.addEventListener('scroll',function(){
     let st = window.scrollY;
-    console.log("st",st)
+
     if(st<1000) {
         if(document.querySelector("#mainVisual").classList.contains("scroll")){
             document.querySelector("#mainVisual").classList.remove("scroll");
