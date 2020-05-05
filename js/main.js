@@ -49,9 +49,6 @@ let mainVisual  = new Swiper( "#mainVisual  .mask",{
         },
     },
 });
-// 문제점 1. 위를 고쳐두고 아래 코드를 실행시키면 pagination이 클릭한거 전 index에 active가 붙음
-//    근데 mainVisual에서는 제대로 됨.. 왜...????? slideTo는 제대로 되는 것 같다.
-// 문제점 2. 위 slideChange에서 보면 loop가 안 됨... 왜.... ㅠ
 
 for(i=0;i<pagination.length;i++){
     pagination[i].addEventListener("click",function(e){
