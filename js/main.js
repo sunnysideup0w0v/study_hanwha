@@ -1,5 +1,6 @@
 let pagination = document.querySelectorAll("#mainVisual .pagination li");
 let mainVisualContent = document.querySelector("#mainVisual");
+let slide = document.querySelectorAll("#mainVisual .mask .visualList li")
 let body = document.body;
 
 let getSiblings = function(elem){
@@ -13,7 +14,8 @@ let getSiblings = function(elem){
     }
     return siblings;
 }
-
+let slideArray = Array.from(slide);
+console.log(slideArray)
 let mainVisual  = new Swiper( "#mainVisual  .mask",{
     effect:"fade",
     speed:1000,
@@ -33,34 +35,46 @@ let mainVisual  = new Swiper( "#mainVisual  .mask",{
         },
         slideChange: function () {
             // let realIndexArr = [];
-            // for(i=0;i<pagination.length;i++){
-            //     pagination[i].classList.remove("active");               
-            // }
-            // 
+            for(i=0;i<pagination.length;i++){
+                pagination[i].classList.remove("active");  
+            }
+            
+            // this > swiper-slide (swiper-slide-active)
+            // slide > NodeList of swiper-slide
+            //  swiper-slide-active class를 가진 li 가 .visualList에서 몇 번째 index인지 구하려고 함.
+            // pagination click 했을 때 넘어가게 하기 위해서.
             // 문제점: eq realIndex??
-            $("#mainVisual .pagination li").removeClass("active");
-            $("#mainVisual .pagination li").eq(this.realIndex).addClass("active");
+            // console.log(this.realIndex)
+            // $("#mainVisual .pagination li").removeClass("active");
+            // $("#mainVisual .pagination li").eq(this.realIndex).addClass("active");
         },
     },
 });
 
-// for(i=0;i<pagination.length;i++){
-//     pagination[i].addEventListener("click",function(){
-//         if(!mainVisual.animating){
-//             this.classList.add('active');
-//         }
-//     })
-// }
-// } 너도 좀 이따가.. 문제점: this.index()+1 여기
-$("#mainVisual .pagination li").on("click",function(){
-    if(!mainVisual.animating) {
-        $(this).addClass("active");
-        $(this).siblings("li").removeClass("active");
-        console.log("$this",$(this))
-        mainVisual.slideTo($(this).index()+1);
-    }
-    return false;
-})
+for(i=0;i<pagination.length;i++){
+    pagination[i].addEventListener("click",e=>{
+        if(!mainVisual.animating){
+            let li = e.currentTarget;
+            e.currentTarget.classList.add("active");
+            // get Siblings만 구하면 되는데...li의 siblings가 구해지지 않음.
+            // getSiblings(li) > firstChild is not a function
+            pagination = Array.from(pagination);
+            mainVisual.slideTo((pagination.indexOf(e.currentTarget))+1)
+        }
+
+    })
+}
+// // } 너도 좀 이따가.. 문제점: this.index()+1 여기;
+// $("#mainVisual .pagination li").on("click",function(){
+//     if(!mainVisual.animating) {
+//         $(this).addClass("active");
+
+//         $(this).siblings("li").removeClass("active");
+//         console.log("$this",$(this))
+//         mainVisual.slideTo($(this).index()+1);
+//     }
+//     return false;
+// })
 
 let gnbLi =  document.querySelectorAll("#gnb .gnbList > li");
 let only = document.querySelector("#gnb .gnbList > li.only");
